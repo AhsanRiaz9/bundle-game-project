@@ -9,110 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
-    <style>
-        *{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        header{
-            text-align: center;
-            padding: 9px; 
-            border-bottom: 1px solid lightgray;
-            font-family: 'Roboto Serif', sans-serif;
-            font-weight: bold;
-        }
-        .board { 
-            display:flex;   
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .row{
-            display: flex;
-            flex-direction: row;
-        }
-        .tile{
-            width: 45px;
-            height: 45px;
-            margin-left: 5px;
-            margin-bottom: 5px;
-            border: 2px solid lightgray;
-        }
-        .keyboard{
-            display:flex;   
-            flex-direction: column;
-            align-items: center;
-        }
-        .key{
-            background-color: #D3D6DA;
-            height: 45px;
-            margin-left: 5px;
-            margin-bottom: 5px;
-            width: 3em;
-            border-style: none;
-            white-space: normal;
-            display: block;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .large{
-            width: 60px;
-        }
-        .bi-backspace
-        {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .inventor
-        {
-            position: fixed; 
-            margin-left: 85%; 
-            margin-top: 2%; 
-            text-align: center;
-            font-size: 12px;
-            margin-right: 3%;
-            font-family: Arial;
-        }
-
-        .logo-img
-        {
-            max-width: 100%;
-            width: 100%;
-            border-radius: 50%;    
-            height: auto;
-        }
-
-        .mapping-table > img
-        {
-            position: fixed;
-            margin-left: 2%;
-            margin-top: 5%;
-            width: 40%;
-            height: auto;
-        } 
-
-        @media only screen and (max-width: 768px) {
-            .key {
-                width: 2.8em;
-                font-size: 10px;
-            }
-            .large {
-                width: 5em;
-            }
-            .mapping-table > img{
-                display: none;
-            }
-
-            .inventor{
-                display: none;
-            }
-            
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -126,114 +24,240 @@
         <h3>Inventor: Shiv</h3>
     </div>
     <div class="board">
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow1">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow2">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow3">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow4">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow5">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow6">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
-        <div class="row">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <div class="row" id="boardRow7">
+            <div class="tile" id="tile1"></div>
+            <div class="tile" id="tile2"></div>
+            <div class="tile" id="tile3"></div>
+            <div class="tile" id="tile4"></div>
+            <div class="tile" id="tile5"></div>
+            <div class="tile" id="tile6"></div>
         </div>
     </div>
 
     <div class="keyboard">
         <div class="row">
-            <button class="key">1</button>
-            <button class="key">2</button>
-            <button class="key">3</button>
-            <button class="key">4</button>
-            <button class="key">5</button>
-            <button class="key">6</button>
-            <button class="key">7</button>
-            <button class="key">8</button>
-            <button class="key">9</button>
-            <button class="key">0</button>
+            <button id="key_1" onclick="keyPressed('1')" class="key">1</button>
+            <button id="key_2" onclick="keyPressed('2')" class="key">2</button>
+            <button id="key_3" onclick="keyPressed('3')" class="key">3</button>
+            <button id="key_4" onclick="keyPressed('4')" class="key">4</button>
+            <button id="key_5" onclick="keyPressed('5')" class="key">5</button>
+            <button id="key_6" onclick="keyPressed('6')" class="key">6</button>
+            <button id="key_7" onclick="keyPressed('7')" class="key">7</button>
+            <button id="key_8" onclick="keyPressed('8')" class="key">8</button>
+            <button id="key_9" onclick="keyPressed('9')" class="key">9</button>
+            <button id="key_0" onclick="keyPressed('0')" class="key">0</button>
+        </div>
 
+        <div class="row">
+            <button id="key_Q" onclick="keyPressed('Q')" class="key">Q</button>
+            <button id="key_W" onclick="keyPressed('W')" class="key">W</button>
+            <button id="key_E" onclick="keyPressed('E')" class="key">E</button>
+            <button id="key_R" onclick="keyPressed('R')" class="key">R</button>
+            <button id="key_T" onclick="keyPressed('T')" class="key">T</button>
+            <button id="key_Y" onclick="keyPressed('Y')" class="key">Y</button>
+            <button id="key_U" onclick="keyPressed('U')" class="key">U</button>
+            <button id="key_I" onclick="keyPressed('I')" class="key">I</button>
+            <button id="key_O" onclick="keyPressed('O')" class="key">O</button>
+            <button id="key_P" onclick="keyPressed('P')" class="key">P</button>
         </div>
         
         <div class="row">
-            <button class="key">Q</button>
-            <button class="key">W</button>
-            <button class="key">E</button>
-            <button class="key">R</button>
-            <button class="key">T</button>
-            <button class="key">Y</button>
-            <button class="key">U</button>
-            <button class="key">I</button>
-            <button class="key">O</button>
-            <button class="key">P</button>
-        </div>
-        
-        <div class="row">
-            <button class="key">A</button>
-            <button class="key">S</button>
-            <button class="key">D</button>
-            <button class="key">F</button>
-            <button class="key">G</button>
-            <button class="key">H</button>
-            <button class="key">J</button>
-            <button class="key">K</button>
-            <button class="key">L</button>
+            <button id="key_A" onclick="keyPressed('A')" class="key">A</button>
+            <button id="key_S" onclick="keyPressed('S')" class="key">S</button>
+            <button id="key_D" onclick="keyPressed('D')" class="key">D</button>
+            <button id="key_F" onclick="keyPressed('F')" class="key">F</button>
+            <button id="key_G" onclick="keyPressed('G')" class="key">G</button>
+            <button id="key_H" onclick="keyPressed('H')" class="key">H</button>
+            <button id="key_J" onclick="keyPressed('J')" class="key">J</button>
+            <button id="key_K" onclick="keyPressed('K')" class="key">K</button>
+            <button id="key_L" onclick="keyPressed('L')" class="key">L</button>
         </div>
         <div class="row">
-            <button class="key large">ENTER</button>
-            <button class="key">Z</button>
-            <button class="key">X</button>
-            <button class="key">C</button>
-            <button class="key">V</button>
-            <button class="key">B</button>
-            <button class="key">N</button>
-            <button class="key">M</button>
-            <button class="key large"> <i class="bi bi-backspace"></i> </button>
+            <button id="key_ENTER" onclick="enter()" class="key large">ENTER</button>
+            <button id="key_Z" onclick="keyPressed('Z')" class="key">Z</button>
+            <button id="key_X" onclick="keyPressed('X')" class="key">X</button>
+            <button id="key_C" onclick="keyPressed('C')" class="key">C</button>
+            <button id="key_V" onclick="keyPressed('V')" class="key">V</button>
+            <button id="key_B" onclick="keyPressed('B')" class="key">B</button>
+            <button id="key_N" onclick="keyPressed('N')" class="key">N</button>
+            <button id="key_M" onclick="keyPressed('M')" class="key">M</button>
+            <button id="key_BACKSPACE" onclick="backspace()" class="key large"> <i class="bi bi-backspace"></i> </button>
         </div>
     </div>
+
+    <script>
+        let keyboard = {
+            '1':'Default', '2':'Default', '3':'Default', '4':'Default', '5':'Default', 
+            '6': 'Default', '7':'Default', '8':'Default', '9':'Default', '0': 'Default',
+            'A': 'Default', 'B': 'Default', 'C': 'Default', 'D': 'Default', 'E': 'Default',
+            'F': 'Default', 'G': 'Default', 'H': 'Default', 'I': 'Default', 'J': 'Default',
+            'K': 'Default', 'L': 'Default', 'M': 'Default', 'N': 'Default', 'O': 'Default',
+            'P': 'Default', 'Q': 'Default', 'R': 'Default', 'S': 'Default', 'T': 'Default', 
+            'U': 'Default', 'V': 'Default', 'W': 'Default', 'X': 'Default', 'Y': 'Default', 
+            'Z': 'Default'
+        };
+        var flag = 0;
+        console.log(keyboard);
+        let count = 0;
+        let answer = 'ABC123';
+        let word = '';
+        let currentRow = 1;
+        function enter() {
+            if(flag==1){
+                return;
+            }
+            if(word.length>0 && word.length%6==0)
+            {
+                changeColor(word, answer, currentRow);
+                if(word==answer){
+                    flag = 1;
+                    alert("You win");
+                }
+                word = '';
+                currentRow++;
+            }
+        }
+        function backspace()
+        {  
+            if(flag==1){
+                return;
+            }
+            row = 0;
+            col = 0;
+            if(word.length==6)
+            {
+                row = parseInt(count/6) - 1;
+                col = 6;
+            }
+            else
+            {
+                row = parseInt(count/6);
+                col = count%6;
+            }
+            x = `#boardRow${row+1} > #tile${col}`;
+            tile = document.querySelector(x);
+            tile.innerText = '';
+            tile.classList.remove('used');
+            word = word.slice(0, word.length - 1);
+            if(count!=0)
+            {
+                count--;
+            }
+            console.log(count);
+
+        }
+        function keyPressed(key)
+        {
+            if(flag==1){
+                return;
+            }
+            if(word.length==6)
+            {
+                return;
+            }
+            if(count==42)
+            {
+                return;
+            }
+            row = parseInt(count/6);
+            col = count%6;
+            x = `#boardRow${row+1} > #tile${col+1}`;
+            tile = document.querySelector(x);
+            tile.innerText = key;
+            tile.classList.add('used');
+            if(word.length<6)
+            {
+                count++;
+            }
+            word = word + key;
+            console.log(word);
+        }
+
+        function changeColor(word, answer, row)
+        {
+            if(flag==1){
+                return;
+            }
+            let i = 0;
+            while(i<6)
+            {
+                ch = word[i];
+                if(ch==answer[i])
+                {
+                    document.querySelector(`#boardRow${row} > #tile${i+1}`).classList.add('green');
+                    document.querySelector('#key_' + ch).classList.add('green');
+                    document.querySelector('#key_' + ch).classList.remove('yellow');
+                    keyboard[ch] = 'green';
+                }
+                else if(answer.indexOf(ch)!=-1)
+                {
+                    document.querySelector(`#boardRow${row} > #tile${i+1}`).classList.add('yellow');
+                    if(keyboard[ch]!='green')
+                    {
+                        document.querySelector('#key_' + ch).classList.add('yellow');
+                        document.querySelector('#key_' + ch).classList.remove('gray');
+                        keyboard[ch] = 'yellow';
+                    }   
+                }
+                else
+                {
+                    document.querySelector(`#boardRow${row} > #tile${i+1}`).classList.add('gray');
+                    document.querySelector('#key_' + ch).classList.add('gray');
+                    keyboard[ch] = 'gray';
+                }
+                i++;
+            }
+        }
+        //alert('⬜🟨🟩');
+    </script>
+
 </body>
 </html>
