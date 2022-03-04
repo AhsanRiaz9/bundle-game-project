@@ -20,7 +20,8 @@ header{
     display: flex;
     flex-direction: row;
 }
-.tile{
+.tile
+{
     width: 45px;
     height: 45px;
     margin-left: 5px;
@@ -114,6 +115,7 @@ header{
         align-items: flex-end;
         margin-right: 15%;
     }
+
     .tile{
         width: 35px;
         height: 35px;
@@ -130,6 +132,12 @@ header{
         width: 90px;   
     }
 
+    .img-x{
+        display: none;
+    }
+    .img-y{
+        display: block;
+    }
     .inventor{
         display: none;
     }
