@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="toast/jquery.toast.min.css">
+    <script src="toast/jquery.toast.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 <body>
     <header>
@@ -144,6 +147,15 @@
             'U': 'Default', 'V': 'Default', 'W': 'Default', 'X': 'Default', 'Y': 'Default', 
             'Z': 'Default'
         };
+        let alphaMap = {
+            'A': '1', 'B': '2', 'C': '3', 'D': '4',
+            'E': '5', 'F': '6', 'G': '7', 'H': '8',
+            'I': '9', 'J': '10', 'K': '11', 'L': '12',
+            'M': '13','N': '14', 'O': '15', 'P': '16',
+            'Q': '17', 'R': '18', 'S': '19', 'T': '20',
+            'U': '21', 'V': '22', 'W': '23', 'X': '24', 
+            'Y': '25', 'Z': '26'
+        };
         var isWinFlag = 0;
         console.log(keyboard);
         let count = 0;
@@ -158,7 +170,22 @@
             {
                 if(isValidWord(word)==false)
                 {
-                    alert('invalid word');
+                    row = parseInt(count/6) - 1;
+                    r = document.querySelector(`#boardRow${row+1}`);
+                    r.classList.add('animated', 'shake');
+                    setTimeout(function(){r.classList.remove('shake');}, 1000);
+                    $.toast({
+                        text: 'Invalid Word',
+                        stack: 10,
+                        loader: false,
+                        showHideTransition: 'plain',
+                        allowToastClose: false,
+                        position: 'mid-center',
+                        hideAfter: 3000,
+                        bgColor: '#000000',
+                        textAlign: 'center'
+                    });
+
                 }
                 else
                 {
@@ -175,7 +202,8 @@
         }
         function backspace()
         {  
-            if(isWinFlag==1){
+            if(isWinFlag==1)
+            {
                 return;
             }
             row = 0;
@@ -193,7 +221,7 @@
             x = `#boardRow${row+1} > #tile${col}`;
             tile = document.querySelector(x);
             tile.innerText = '';
-            tile.classList.remove('used');
+            tile.classList.remove('used', 'zoon-in');
             word = word.slice(0, word.length - 1);
             if(count!=0)
             {
@@ -220,7 +248,7 @@
             x = `#boardRow${row+1} > #tile${col+1}`;
             tile = document.querySelector(x);
             tile.innerText = key;
-            tile.classList.add('used');
+            tile.classList.add('used', 'zoom-out');
             if(word.length<6)
             {
                 count++;
@@ -367,18 +395,23 @@
         let dict = seperateAlphaDigits(word);
         let alpha = dict['alpha'];
         let digit = dict['digit'];
-        let validFlag = false;
-        if(alpha.length>0 && digit.length>0 && (alpha+digit).length==6)
+        let validFlag = (word[0]>='A' && word[0]<='Z')? word == alpha + digit: word == digit + alpha;
+        if(validFlag==true && alpha.length>0 && digit.length>0 && (alpha+digit).length==6)
         {            
-            validFlag = (word[0]>='A' && word[0]<='Z')? word == alpha + digit: word == digit + alpha;
-            if(validFlag==true)
+            let temp = '';
+            for(let i=0;i<alpha.length;i++)
             {
-
+                ch = alphaMap[alpha[i]]; 
+                if(alpha[i]<'J' && alpha.length==2)
+                {
+                    temp += ('0' + ch);            
+                }
+                else{
+                    temp += ch;
+                }
             }
-            else
-            {
-                return false;
-            }
+            console.log(temp +' : ' + digit);
+            return temp == digit;
         }
         else
         {

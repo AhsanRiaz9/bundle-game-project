@@ -1,0 +1,11 @@
+$.toast({         	
+text: 'Invalid Word',                        
+stack: 10,         
+loader: false,
+showHideTransition: 'plain', 
+allowToastClose: false, 
+position: 'top-center',        
+hideAfter: 3000,        
+bgColor: '#000000',                        
+textAlign: 'center'
+});
