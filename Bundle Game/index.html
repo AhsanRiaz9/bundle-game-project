@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 <body>
-    
+    <div class="stats">
+        <button onclick="shareResult()">SHARE</button>
+    </div>
     <header>
         <h1>Bundle</h1>
     </header>
@@ -162,7 +164,7 @@
         var isWinFlag = 0;
         console.log(keyboard);
         let count = 0;
-        let answer = 'ABC123';
+        let answer = 'AZ0126';
         let word = '';
         let currentRow = 1;
         function enter() {
@@ -176,7 +178,11 @@
                     row = parseInt(count/6) - 1;
                     r = document.querySelector(`#boardRow${row+1}`);
                     r.classList.add('animated', 'shake');
-                    setTimeout(function(){r.classList.remove('shake');}, 1000);
+                    setTimeout(function()
+                    {
+                            r.classList.remove('shake');
+                            emptyRow(row+1);
+                    }, 1000);
                     $.toast({
                         text: 'Invalid Word',
                         stack: 10,
@@ -188,6 +194,7 @@
                         bgColor: '#000000',
                         textAlign: 'center'
                     });
+                    
 
                 }
                 else
@@ -320,8 +327,34 @@
             }
 
         }
-        //alert('⬜🟨🟩');
+        //alert('⬜');
 
+    function shareResult()
+    {
+        let g = '🟩';
+        let w = '⬜';
+        let y = '🟨';
+        let n = parseInt(count/6);
+        let resultStr = `Bundle 259 ${n}/7`;
+        for(let i=1;i<=n;i++)
+        {
+
+        }
+    }    
+    function emptyRow(row)
+    {
+        if(word==''){
+            return;
+        }
+        for(let i=1;i<=6;i++)
+        {
+            tile = document.querySelector(`#boardRow${row} > #tile${i}`);
+            tile.innerText = '';
+            tile.classList.remove('used');
+        }
+        word = '';
+        count = count - 6;
+    }    
     function getCountDict(answer)
     {
         let dict = {};

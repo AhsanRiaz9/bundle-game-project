@@ -4,10 +4,6 @@
     padding: 0;
 }
 
-/* body{
-    opacity: 1; 
-} */
-
 header{
     text-align: center;
     padding: 9px; 
@@ -116,16 +112,16 @@ header{
 
 .stats{
     position: fixed;
-    width: 400px;
-    height: 300px;
-    margin: 5% auto;
+    width: 350px;
+    height: 280px;
+    margin: 10% auto;
     left: 0; 
     right: 0;
     background: white;
     padding: 15px;
     box-shadow: 2px 3px 2px 3px gray;
     opacity: 1 !important;
-
+    display: none;
 }
 
 .stats > h1
@@ -133,14 +129,45 @@ header{
     font-size: 70px !important;
     font-family: Arial;
     color: red;
-    opacity: 1;
 }
 
+.shareBtn{
+    width: 200px;
+    height: 50px;
+    background-color: #6aaa64;
+    color: white;
+    font-size: 18px;
+    border-style: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.stats > p{
+    font-size: 20px;
+    text-align: center; 
+    margin-top: 30px;
+}
 
 @media only screen and (max-width: 768px) {
     .board{
         align-items: flex-end;
         margin-right: 15%;
+    }
+
+    .stats{
+        margin: 20% auto;
+        left: 0; 
+        right: 0;
+        width: 250px;
+        height: 230px;
+    }
+    .shareBtn
+    {
+        width: 150px;
+        height: 40px;
+        margin-top: 2%;
     }
 
     .tile{

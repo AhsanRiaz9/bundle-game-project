@@ -16,7 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 <body>
-    
+    <div class="stats">
+        <p>Congrats You Win</p>
+        <p>Next Bundle Word</p>
+        <p>00:04:10</p>
+        <button class="shareBtn" onclick="shareResult()">SHARE <i class="bi bi-share"></i></button>
+    </div>
     <header>
         <h1>Bundle</h1>
     </header>
@@ -87,7 +92,6 @@
     </div>
 
     
-
     <div class="keyboard">
         <div class="row">
             <button id="key_1" onclick="keyPressed('1')" class="key">1</button>
@@ -160,10 +164,11 @@
             'Y': '25', 'Z': '26'
         };
         var isWinFlag = 0;
-        console.log(keyboard);
         let count = 0;
-        let answer = 'ABC123';
+        let answer = 'AZ0126';
         let word = '';
+        let colorWord = '';
+        let stack = [];
         let currentRow = 1;
         function enter() {
             if(isWinFlag==1){
@@ -176,7 +181,11 @@
                     row = parseInt(count/6) - 1;
                     r = document.querySelector(`#boardRow${row+1}`);
                     r.classList.add('animated', 'shake');
-                    setTimeout(function(){r.classList.remove('shake');}, 1000);
+                    setTimeout(function()
+                    {
+                            r.classList.remove('shake');
+                            emptyRow(row+1);
+                    }, 1000);
                     $.toast({
                         text: 'Invalid Word',
                         stack: 10,
@@ -188,25 +197,28 @@
                         bgColor: '#000000',
                         textAlign: 'center'
                     });
-
                 }
                 else
                 {
+                    stack.push(colorWord);
                     changeColor(word, answer, currentRow);
-                    if(word==answer){
+                    if(word==answer)
+                    {
                         isWinFlag = 1;
                         $.toast({
-                        text: 'Splendid',
-                        stack: 10,
-                        loader: false,
-                        showHideTransition: 'plain',
-                        allowToastClose: false,
-                        position: 'mid-center',
-                        hideAfter: 3000,
-                        bgColor: '#000000',
-                        textAlign: 'center'
-                    });
+                            text: 'Splendid',
+                            stack: 10,
+                            loader: false,
+                            showHideTransition: 'plain',
+                            allowToastClose: false,
+                            position: 'top-center',
+                            hideAfter: 2000,
+                            bgColor: '#000000',
+                            textAlign: 'center'
+                        });
+                        document.querySelector('.stats').style.display = 'block';
                     }
+                    colorWord = ''; 
                     word = '';
                     currentRow++;
                 }
@@ -286,6 +298,7 @@
                     document.querySelector('#key_' + ch).classList.add('green');
                     document.querySelector('#key_' + ch).classList.remove('yellow');
                     keyboard[ch] = 'green';
+                    colorWord += 'g';
                     countDict[ch] = countDict[ch] - 1; 
                 }
                 else if(answer.indexOf(ch)==-1)
@@ -293,6 +306,7 @@
                     document.querySelector(`#boardRow${row} > #tile${i+1}`).classList.add('gray');
                     document.querySelector('#key_' + ch).classList.add('gray');
                     keyboard[ch] = 'gray';
+                    colorWord += 'w';
                 }
                 i++;
             }
@@ -309,19 +323,80 @@
                             document.querySelector('#key_' + ch).classList.remove('gray');
                             keyboard[ch] = 'yellow';
                         }
+                        colorWord += 'y';
                         countDict[ch] = countDict[ch] - 1;
                     }
                     else{
                         document.querySelector(`#boardRow${row} > #tile${i+1}`).classList.add('gray');
                         document.querySelector('#key_' + ch).classList.add('gray');
                         keyboard[ch] = 'gray';
+                        colorWord += 'w';
                     }
                 }
             }
 
         }
-        //alert('⬜🟨🟩');
+        //alert('⬜');
 
+    function shareResult()
+    {
+        let g = '🟩';
+        let w = '⬜';
+        let y = '🟨';
+        let stack = ['ggyggg', 'gwwggw'];
+        let n = stack.length; 
+        let resultStr = `Bundle 259 ${n}/7`;
+        for(let i=0;i<n;i++)
+        {
+            let temp = stack[i]; 
+            resultStr += '\n';
+            for(let j=0;j<6;j++){
+                if(temp[j]=='g')
+                {
+                    resultStr += g;
+                }
+                else if(temp[j]=='w')
+                {
+                    resultStr += w;
+                }
+                else
+                {
+                    resultStr += y;
+                }
+            }
+        }
+        let elem = document.createElement("textarea");
+        document.body.appendChild(elem);
+        elem.value = resultStr;
+        elem.select();
+        document.execCommand("copy");
+        document.body.removeChild(elem);
+        $.toast({
+            text: 'Result Copied!',
+            stack: 5,
+            loader: false,
+            showHideTransition: 'plain',
+            allowToastClose: false,
+            position: 'top-center',
+            hideAfter: 2000,
+            bgColor: '#000000',
+            textAlign: 'center'
+        });
+    }    
+    function emptyRow(row)
+    {
+        if(word==''){
+            return;
+        }
+        for(let i=1;i<=6;i++)
+        {
+            tile = document.querySelector(`#boardRow${row} > #tile${i}`);
+            tile.innerText = '';
+            tile.classList.remove('used');
+        }
+        word = '';
+        count = count - 6;
+    }    
     function getCountDict(answer)
     {
         let dict = {};

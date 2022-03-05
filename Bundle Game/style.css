@@ -4,10 +4,6 @@
     padding: 0;
 }
 
-/* body{
-    opacity: 1; 
-} */
-
 header{
     text-align: center;
     padding: 9px; 
@@ -116,7 +112,7 @@ header{
 
 .stats{
     position: fixed;
-    width: 400px;
+    width: 350px;
     height: 300px;
     margin: 5% auto;
     left: 0; 
@@ -125,7 +121,7 @@ header{
     padding: 15px;
     box-shadow: 2px 3px 2px 3px gray;
     opacity: 1 !important;
-
+    display: none;
 }
 
 .stats > h1
@@ -133,7 +129,6 @@ header{
     font-size: 70px !important;
     font-family: Arial;
     color: red;
-    opacity: 1;
 }
 
 
